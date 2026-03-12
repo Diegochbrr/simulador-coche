@@ -1,0 +1,353 @@
+:root {
+    --bg-color: #050505;
+    --dashboard-bg: #111;
+    --text-color: #eee;
+    --accent-red: #ff3333;
+    --accent-blue: #33ccff;
+    --accent-green: #33ff33;
+    --chrome: linear-gradient(135deg, #e0e0e0, #888, #e0e0e0);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Lock scrolling completely */
+    user-select: none;
+    -webkit-user-select: none; /* iOS Safari */
+    touch-action: none; /* Prevents pull-to-refresh and zooming */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.simulation-container {
+    width: 100%;
+    height: 100%;
+    max-width: 500px; /* Safe bounds for mobile portrait */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, #1a1a1a, #0a0a0a);
+    padding: 4vh 4vw 2vh 4vw;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+/* 1. Dashboard Block */
+.dashboard {
+    background: var(--dashboard-bg);
+    border-radius: 15px;
+    padding: 15px 10px;
+    border: 2px solid #222;
+    box-shadow: inset 0 0 15px #000;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.engine-status {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #550000;
+    margin-bottom: 2vh;
+    letter-spacing: 2px;
+}
+
+.engine-status.on {
+    color: var(--accent-green);
+    text-shadow: 0 0 10px var(--accent-green);
+}
+
+.gauges {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, #222, #000);
+    border: 4px solid #333;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    position: relative;
+}
+
+.gauge .value {
+    font-size: 1.6rem;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.gauge .unit {
+    font-size: 0.7rem;
+    color: #888;
+}
+
+.gear-display {
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--accent-blue);
+    width: 70px;
+    text-align: center;
+    font-family: monospace;
+    text-shadow: 0 0 15px rgba(51, 204, 255, 0.5);
+}
+
+/* 2. Controls Area Block */
+.controls-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 35vh;
+    padding: 2vh 0;
+    position: relative;
+}
+
+/* Ignition (Left Side) */
+.ignition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60px;
+    margin-top: 5vh;
+}
+
+.key-slot {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #1a1a1a, #000);
+    border: 3px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.9);
+}
+
+.key {
+    width: 8px;
+    height: 35px;
+    background: var(--chrome);
+    border-radius: 2px;
+    transition: transform 0.3s;
+    transform-origin: bottom center;
+}
+
+.key.on {
+    transform: rotate(90deg);
+}
+
+.ignition label {
+    font-size: 0.65rem;
+    color: #999;
+    font-weight: bold;
+}
+
+/* Steering Column (Center) */
+.steering-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vh;
+}
+
+.steering-wheel {
+    width: 170px;
+    height: 170px;
+    border: 20px solid #1a1a1a;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset 0 0 10px #000, 0 5px 15px rgba(0,0,0,0.8);
+    background: radial-gradient(circle transparent 50%, rgba(0,0,0,0.3));
+    z-index: 10;
+}
+
+.wheel-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45px;
+    height: 45px;
+    background: radial-gradient(circle, #222, #0a0a0a);
+    border-radius: 50%;
+    border: 3px solid #333;
+}
+
+.wheel-spoke {
+    position: absolute;
+    background: linear-gradient(90deg, #111, #222, #111);
+}
+
+.wheel-spoke.left {
+    width: 35px; height: 75px;
+    top: 50%; left: -5px; transform: translateY(-50%) rotate(90deg); border-radius: 8px;
+}
+.wheel-spoke.right {
+    width: 35px; height: 75px; 
+    top: 50%; right: -5px; transform: translateY(-50%) rotate(90deg); border-radius: 8px;
+}
+.wheel-spoke.bottom {
+    width: 75px; height: 35px; 
+    bottom: -5px; left: 50%; transform: translateX(-50%) rotate(90deg); border-radius: 8px;
+}
+
+/* Gearbox (Right Side) */
+.gearbox-container {
+    width: 110px;
+    height: 120px;
+    background: radial-gradient(circle, #2a2a2a, #151515);
+    border: 3px solid #333;
+    border-radius: 10px;
+    padding: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vh;
+}
+
+.gearbox {
+    position: relative;
+    flex: 1;
+}
+
+.pattern {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 80px; height: 70px;
+    border: 4px solid #111;
+}
+
+.pattern::before {
+    content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 4px; background: #111; transform: translateY(-50%);
+}
+.pattern::after {
+    content: ''; position: absolute; top: 0; left: 50%; width: 4px; height: 100%; background: #111; transform: translateX(-50%);
+}
+
+.gears {
+    position: relative;
+    width: 100%; height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+}
+
+.gear-slot {
+    display: flex; justify-content: center; align-items: center;
+    font-size: 0.9rem; font-weight: bold; color: #444; z-index: 2;
+}
+
+.gear-slot.active {
+    color: var(--accent-red);
+    text-shadow: 0 0 5px var(--accent-red);
+}
+
+.gear-stick {
+    position: absolute;
+    width: 15px; height: 15px;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    transition: all 0.2s;
+    z-index: 3;
+}
+
+.gear-stick .knob {
+    width: 40px; height: 40px;
+    background: radial-gradient(circle at 30% 30%, #444, #111);
+    border: 2px solid #555; border-radius: 50%;
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.8);
+}
+
+/* Gear Stick Positions */
+.gear-stick.g-1 { top: 20%; left: 16.6%; }
+.gear-stick.g-2 { top: 80%; left: 16.6%; }
+.gear-stick.g-3 { top: 20%; left: 50%; }
+.gear-stick.g-4 { top: 80%; left: 50%; }
+.gear-stick.g-5 { top: 20%; left: 83.3%; }
+.gear-stick.g-R { top: 80%; left: 83.3%; }
+
+/* 3. Pedals Block */
+.pedals-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    height: 25vh;
+    padding-bottom: 2vh;
+    border-top: 2px solid #222;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+    border-radius: 0 0 15px 15px;
+}
+
+.pedal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pedal label {
+    margin-top: 1vh;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #777;
+    background: #111;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid #333;
+}
+
+.pedal-pad {
+    width: 60px;
+    height: 100px;
+    background: var(--chrome);
+    border-radius: 5px;
+    border: 2px solid #111;
+    transition: transform 0.1s;
+    transform-origin: top center;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+}
+
+.pedal-pad.wide {
+    width: 80px;
+    height: 100px;
+}
+
+.pedal-pad.tall {
+    width: 50px;
+    height: 130px;
+}
+
+.pedal.pressed .pedal-pad {
+    transform: perspective(400px) rotateX(25deg) translateY(10px);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+}
+
+/* Texture for pedals */
+.pedal-pad::after {
+    content:'';
+    position:absolute;
+    top:4px; left:4px; right:4px; bottom:4px;
+    border-radius:3px;
+}
+
+.pedal.clutch-pedal .pedal-pad::after { background: repeating-linear-gradient(0deg, #222, #222 4px, #111 5px, #111 10px); }
+.pedal.brake-pedal .pedal-pad::after { background: repeating-linear-gradient(0deg, #322, #322 4px, #111 5px, #111 10px); }
+.pedal.gas-pedal .pedal-pad::after { background: repeating-linear-gradient(0deg, #232, #232 4px, #111 5px, #111 10px); }

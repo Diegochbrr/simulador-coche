@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Car Simulator - iPhone 11</title>
+    <link rel="stylesheet" href="iphone11.css">
+</head>
+<body>
+    <div class="simulation-container">
+        <!-- Dashboard Configuration -->
+        <div class="dashboard">
+            <div class="indicator engine-status" id="engine-status">ENGINE: OFF</div>
+            <div class="gauges">
+                <div class="gauge rpm-gauge">
+                    <span class="value" id="rpm-value">0</span>
+                    <span class="unit">RPM</span>
+                </div>
+                <div class="gear-display" id="current-gear">N</div>
+                <div class="gauge speed-gauge">
+                    <span class="value" id="speed-value">0</span>
+                    <span class="unit">KM/H</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls Area (Key, Wheel, Gearbox) -->
+        <div class="controls-area">
+            <!-- Ignition Key -->
+            <div class="ignition">
+                <div class="key-slot" id="key-slot" title="Tap to Start">
+                    <div class="key" id="car-key"></div>
+                </div>
+                <label>ENGINE</label>
+            </div>
+            
+            <!-- Steering Wheel -->
+            <div class="steering-column">
+                <div class="steering-wheel" id="steering-wheel">
+                    <div class="wheel-center"></div>
+                    <div class="wheel-spoke left"></div>
+                    <div class="wheel-spoke right"></div>
+                    <div class="wheel-spoke bottom"></div>
+                </div>
+            </div>
+
+            <!-- Gearbox -->
+            <div class="gearbox-container">
+                <div class="gearbox">
+                    <div class="pattern"></div>
+                    <div class="gears">
+                        <div class="gear-slot" data-gear="1">1</div>
+                        <div class="gear-slot" data-gear="3">3</div>
+                        <div class="gear-slot" data-gear="5">5</div>
+                        <div class="gear-slot" data-gear="2">2</div>
+                        <div class="gear-slot" data-gear="4">4</div>
+                        <div class="gear-slot" data-gear="R">R</div>
+                    </div>
+                    <div class="gear-stick" id="gear-stick">
+                        <div class="knob"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pedals -->
+        <div class="pedals-container">
+            <div class="pedal clutch-pedal" id="clutch" data-pedal="clutch">
+                <div class="pedal-pad"></div>
+                <label>CLUTCH</label>
+            </div>
+            <div class="pedal brake-pedal" id="brake" data-pedal="brake">
+                <div class="pedal-pad wide"></div>
+                <label>BRAKE</label>
+            </div>
+            <div class="pedal gas-pedal" id="gas" data-pedal="gas">
+                <div class="pedal-pad tall"></div>
+                <label>GAS</label>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Link to the original logic script -->
+    <script src="script.js"></script>
+</body>
+</html>
