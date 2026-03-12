@@ -691,6 +691,110 @@ body {
     }
 }
 
+/* Specific layout for tall narrow mobile phones (iPhone 11 style) */
+@media (max-width: 450px) and (min-height: 700px) {
+    .simulation-container {
+        /* Remove the aggressive scale from the generic 600px breakpoint for tall phones */
+        transform: none;
+        margin-top: 0;
+        height: 100vh;
+        min-height: 100vh;
+        padding: 4vh 5px 2vh 5px;
+        justify-content: space-between;
+    }
+
+    .dashboard {
+        height: auto;
+        padding: 15px 5px;
+        margin-bottom: 0;
+    }
+
+    .gauge {
+        width: 85px;
+        height: 85px;
+        border-width: 3px;
+    }
+
+    .gauge .value {
+        font-size: 1.4rem;
+    }
+
+    .gear-display {
+        font-size: 3rem;
+        width: 60px;
+    }
+
+    .controls-area {
+        flex-direction: row;
+        gap: 0;
+        padding: 0;
+        align-items: flex-start;
+        margin: 2vh 0;
+    }
+
+    /* Force items to sit on one line: Ignition - Wheel - Gearbox */
+    .ignition {
+        position: relative;
+        margin-top: 5vh;
+        order: 1;
+        width: 60px;
+        transform: scale(0.85);
+    }
+
+    .steering-column {
+        order: 2;
+        flex: 1;
+    }
+
+    .steering-wheel {
+        width: 160px;
+        height: 160px;
+        border-width: 15px;
+    }
+
+    .wheel-center {
+        width: 45px;
+        height: 45px;
+        border-width: 2px;
+    }
+
+    .wheel-center::after {
+        width: 20px;
+        height: 20px;
+    }
+
+    .gearbox-container {
+        position: relative;
+        order: 3;
+        margin-top: 5vh;
+        width: 100px;
+        height: 110px;
+        padding: 5px;
+        max-width: none;
+        transform: scale(0.85);
+        transform-origin: top right;
+    }
+
+    .pedals-container {
+        height: auto;
+        padding: 15px 0 25px 0;
+        margin-top: 0;
+    }
+
+    .pedal-pad {
+        height: 90px;
+    }
+    
+    .pedal-pad.wide {
+        height: 90px;
+    }
+    
+    .pedal-pad.tall {
+        height: 110px;
+    }
+}
+
+
 /* For screens that are short, scale down elements vertically */
 @media (max-height: 850px) {
     .simulation-container {
