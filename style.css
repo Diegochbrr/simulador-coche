@@ -616,6 +616,19 @@ body {
 }
 
 @media (max-width: 600px) {
+    .simulation-container {
+        /* Force scale down the entire container to ensure it fits */
+        transform: scale(0.65);
+        transform-origin: top center;
+        margin-top: -10vh; /* Adjust for the visual offset caused by scaling */
+        height: auto;
+        min-height: auto;
+    }
+
+    .controls-area {
+        gap: 15px; /* Tighter gap on extreme scale */
+    }
+
     .gauge {
         width: 110px;
         height: 110px;
@@ -680,6 +693,15 @@ body {
 
 /* For screens that are short, scale down elements vertically */
 @media (max-height: 850px) {
+    .simulation-container {
+        /* Force scale down for short screens like landscape mobile or small laptops */
+        transform: scale(0.70);
+        transform-origin: top center;
+        margin-top: -5vh;
+        height: auto;
+        min-height: auto;
+    }
+
     .dashboard {
         margin-bottom: 20px;
         padding: 10px;
